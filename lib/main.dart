@@ -9,24 +9,22 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return MaterialApp(
-    title: 'Sandwich Shop App',
-    home: Scaffold(
-      appBar: AppBar(title: const Text('Sandwich Counter')),
-      body: Center(
-        child: Container(
-          
-    margin: const EdgeInsets.all(10.0),
-    color: Colors.blue[600],
-    width: 275,
-    height: 50,
-    child: OrderItemDisplay(5, 'Footlong'),
-  ),
-        
+    return MaterialApp(
+      title: 'Sandwich Shop App',
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Sandwich Counter')),
+        body: Center(
+          child: Container(
+            margin: const EdgeInsets.all(10.0),
+            color: Colors.blue[600],
+            width: 275,
+            height: 50,
+            child: OrderItemDisplay(5, 'Footlong'),
+          ),
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
 
 class OrderItemDisplay extends StatelessWidget {
@@ -142,7 +140,6 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('welcome to my shop!'),
-            
           ],
         ),
       ),
