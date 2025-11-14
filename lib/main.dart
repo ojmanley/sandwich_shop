@@ -29,6 +29,7 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
+  String _selectedSize = 'Footlong';
 
   void _increaseQuantity() {
     if (_quantity < widget.maxQuantity) {
@@ -52,9 +53,26 @@ class _OrderScreenState extends State<OrderScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+              child: DropdownButtonFormField<String>(
+                initialValue: _selectedSize,
+                decoration: const InputDecoration(
+                  labelText: 'Sandwich size',
+                  border: OutlineInputBorder(),
+                ),
+                items: const [
+                  DropdownMenuItem(value: 'Six-inch', child: Text('Six-inch')),
+                  DropdownMenuItem(value: 'Footlong', child: Text('Footlong')),
+                ],
+                onChanged: (value) {
+                  if (value != null) setState(() => _selectedSize = value);
+                },
+              ),
+            ),
             OrderItemDisplay(
               _quantity,
-              'Footlong',
+              _selectedSize,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
