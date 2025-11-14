@@ -7,7 +7,7 @@ void main() {
 class App extends StatelessWidget {
   const App({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Sandwich Shop App',
@@ -15,7 +15,6 @@ class App extends StatelessWidget {
     );
   }
 }
-
 
 class OrderScreen extends StatefulWidget {
   final int maxQuantity;
