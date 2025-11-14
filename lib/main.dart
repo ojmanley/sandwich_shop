@@ -20,7 +20,9 @@ class App extends StatelessWidget {
             width: 275,
             height: 50,
             child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
+              
                 OrderItemDisplay(5, 'Footlong'),
                 OrderItemDisplay(5, 'Footlong'),
                 OrderItemDisplay(5, 'Footlong'),
