@@ -60,18 +60,34 @@ class _OrderScreenState extends State<OrderScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: _increaseQuantity,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white,
+                  onPressed: _quantity >= widget.maxQuantity
+                      ? null
+                      : _increaseQuantity,
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                      (states) {
+                        if (states.contains(WidgetState.disabled)) {
+                          return Colors.grey;
+                        }
+                        return Colors.blue;
+                      },
+                    ),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
                   ),
-                  child: const Text('Add'),
+                  child: Text(_quantity >= widget.maxQuantity ? 'Full' : 'Add'),
                 ),
                 ElevatedButton(
-                  onPressed: _decreaseQuantity,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
+                  onPressed: _quantity <= 0 ? null : _decreaseQuantity,
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                      (states) {
+                        if (states.contains(WidgetState.disabled)) {
+                          return Colors.grey.shade600;
+                        }
+                        return Colors.red;
+                      },
+                    ),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
                   ),
                   child: const Text('Remove'),
                 ),
