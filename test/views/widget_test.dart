@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sandwich_shop/main.dart';
+import 'package:sandwich_shop/repositories/order_repository.dart';
 
 void main() {
   group('App', () {
@@ -82,21 +83,22 @@ void main() {
       expect(find.text('Note: Extra mayo'), findsOneWidget);
     });
 
-    testWidgets('toggles sandwich size with Switch', (WidgetTester tester) async {
+    testWidgets('toggles sandwich size with Switch',
+        (WidgetTester tester) async {
       await tester.pumpWidget(const App());
 
       // Default should be footlong
       expect(find.text('0 white footlong sandwich(es): '), findsOneWidget);
 
-  // Tap the size Switch to change to six-inch
-  await tester.tap(find.byKey(const Key('size_switch')));
+      // Tap the size Switch to change to six-inch
+      await tester.tap(find.byKey(const Key('size_switch')));
       await tester.pumpAndSettle();
 
       // Now display should reflect six-inch
       expect(find.text('0 white six-inch sandwich(es): '), findsOneWidget);
 
-  // Toggle back to footlong
-  await tester.tap(find.byKey(const Key('size_switch')));
+      // Toggle back to footlong
+      await tester.tap(find.byKey(const Key('size_switch')));
       await tester.pumpAndSettle();
       expect(find.text('0 white footlong sandwich(es): '), findsOneWidget);
     });
@@ -186,5 +188,6 @@ void main() {
           find.text('1 wholemeal footlong sandwich(es): 🥪'), findsOneWidget);
       expect(find.text('Note: Lots of lettuce'), findsOneWidget);
     });
+    
   });
 }

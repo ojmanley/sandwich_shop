@@ -33,6 +33,7 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   late final OrderRepository _orderRepository;
+  final PricingRepository _pricingRepository = const PricingRepository();
   final TextEditingController _notesController = TextEditingController();
   bool _isFootlong = true;
   bool _isToasted = false;
@@ -184,6 +185,15 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
               ],
             ),
+            const SizedBox(height: 16),
+            // Total price display
+            Builder(builder: (context) {
+              final int total = _pricingRepository.calculateTotal(
+                quantity: _orderRepository.quantity,
+                isFootlong: _isFootlong,
+              );
+              return Text('Total: £$total', style: normalText);
+            }),
           ],
         ),
       ),
